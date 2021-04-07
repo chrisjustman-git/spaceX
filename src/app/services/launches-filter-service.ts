@@ -3,7 +3,7 @@ import { LaunchFilterFormNames, ILaunchFilter, SortOrder } from "../models/launc
 import { ILaunch } from "../models/launch.model";
 
 /// Helpers for sorting and filtering ILaunch array data.
-@Injectable({providedIn: "root"})
+@Injectable({ providedIn: "root" })
 export class ILaunchesFilterService {
 
     // Used internally as a list of all launches to filter.

@@ -7,6 +7,7 @@ import { ModalService, ModalSize } from 'src/app/services/modal-service';
 import { SpaceXService } from 'src/app/services/spaceX.service';
 
 /// Component to display launch list in a paginated table.
+/// Component used bootstrap ng-pagination.
 @Component({
   selector: 'app-launches',
   templateUrl: './launches.component.html',
@@ -14,9 +15,13 @@ import { SpaceXService } from 'src/app/services/spaceX.service';
 })
 export class LaunchesComponent implements OnInit {
   public isLoading: boolean = true;
+
+  // Because all data is loaded all at once and we are filtering client side,
+  // We need to track all launches and filtered launches.
   public filteredLaunches: ILaunch[] = [];
   private allLaunches: ILaunch[] = [];
 
+  // Values used for table pagination.
   public page: number = 1;
   public pageSize: number = 10;
 
