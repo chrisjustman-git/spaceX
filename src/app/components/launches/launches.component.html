@@ -1,0 +1,29 @@
+<app-launches-filter (filterChangedEvent)="applyFilters($event)"></app-launches-filter>
+
+<div *ngIf="filteredLaunchCount > 0; else noRecords">
+    <table class="table table-hover col-10">
+        <thead>
+            <tr>
+                <th>Launch Name</th>
+                <th>Flight Number</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let launch of filteredLaunches | slice: (page-1) * pageSize : page * pageSize"
+                (click)="openDetails(launch)">
+                <td>{{launch.name}} </td>
+                <td>{{launch.flight_number}}</td>
+                <td>{{launch.date_utc | date:'shortDate' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination [collectionSize]="filteredLaunchCount"
+                    [(page)]="page"
+                    [pageSize]="pageSize"
+                    aria-label="Default pagination"></ngb-pagination>
+</div>
+
+<ng-template #noRecords>
+    <h4>No Records Found!</h4>
+</ng-template>

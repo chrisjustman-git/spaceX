@@ -1,0 +1,13 @@
+**/bin
+**/obj
+**/.vscode
+**/.vs
+**/*.user
+**/*.vspscc
+**/*.vssscc
+node_modules
+dist
+**/test-results
+debug.log
+**/wwwroot
+

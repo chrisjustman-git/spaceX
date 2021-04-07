@@ -1,0 +1,33 @@
+<!--Specifically details, success, and links to presskit and webcast-->
+<form class="container col-8">
+    <p class="close"
+       (click)="close()">X</p>
+
+    <div class="form-row col-12">
+        <label>Name:&nbsp;</label>
+        <p>{{launch.name}}</p>
+    </div>
+
+    <div class="form-row col-12">
+        <label>Details:&nbsp;</label>
+        <p>{{launch.details}}</p>
+    </div>
+    <div class="form-row col-12">
+        <label>Success:&nbsp;</label>
+        <p>{{ launch.success ? 'Yes' : 'No' }}</p>
+    </div>
+
+    <div class="col-sm-2 col-form-label">
+        <h4>Links</h4>
+        <div class="form-group">
+            <a *ngIf="launch.links.presskit"
+               target="_blank"
+               [href]="launch.links.presskit">Presskit</a>
+        </div>
+        <div class="form-group">
+            <a *ngIf="launch.links.webcast"
+               target="_blank"
+               [href]="launch.links.webcast">Webcast</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+<form class="m-3" [formGroup]="filterForm">
+	<div class="form-group col-2">
+		<select class="form-control"
+				[formControlName]="launchFilterFormNames.launchpads">
+			<option [ngValue]="null">All LaunchPads</option>
+			<option *ngFor="let launchPad of (launchPadsObservable | async)"
+					[ngValue]="launchPad.launches">
+				{{launchPad.name}}
+			</option>
+		</select>
+	</div>
+</form>
