@@ -3,24 +3,30 @@ import { NgbModal, NgbModalOptions, NgbModalRef } from "@ng-bootstrap/ng-bootstr
 import { LaunchDetailsComponent } from "../components/launch-details/launch-details.component";
 import { ILaunch } from "../models/launch.model";
 
-@Injectable({providedIn: "root"})
+/// Helper service for interacting with modals.
+
+@Injectable({ providedIn: "root" })
 export class ModalService {
 
     constructor(private ngbModal: NgbModal) { }
-    
+
+    /// Opens launch details modal.
+    /// Requires ModalSize and launch record to display details of.
     public openLaunchDetailsModal(record: ILaunch, modalSize: ModalSize): void {
         const config: NgbModalOptions = {
             size: modalSize
-          }
+        }
         const modalRef: NgbModalRef = this.openModal(LaunchDetailsComponent, config);
         (modalRef.componentInstance).launch = record;
     }
 
-    public openModal(component: any, modalOptions: NgbModalOptions): NgbModalRef {
-          return this.ngbModal.open(component, modalOptions);
+    /// Making use of NgbModal to open the modal.
+    private openModal(component: any, modalOptions: NgbModalOptions): NgbModalRef {
+        return this.ngbModal.open(component, modalOptions);
     }
 }
 
+/// ModalSizes defined as enum list.
 export enum ModalSize {
     small = 'sm',
     lg = 'lg',

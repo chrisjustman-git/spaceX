@@ -12,7 +12,8 @@ import { SpaceXService } from 'src/app/services/spaceX.service';
   styleUrls: ['./launches-filter.component.css']
 })
 export class LaunchesFilterComponent implements OnInit, OnDestroy {
-  // Using boolean field for unsubscribing.
+
+  // Boolean field to use for unsubscribing observables onDestroy.
   private alive: boolean = true;
 
   public launchPadsObservable: Observable<ILaunchPad[]>;
@@ -26,10 +27,12 @@ export class LaunchesFilterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Creating the filter form.
     this.filterForm = new FormGroup({
       [LaunchFilterFormNames.launchpads]: new FormControl(null)
     });
 
+    // When filter form changes we want to emit event to allow parent how they want to deal with it.
     this.filterForm.valueChanges
       .pipe(takeWhile(() => this.alive))
       .subscribe((val: ILaunchFilter) => this.filterChangedEvent.emit(val))

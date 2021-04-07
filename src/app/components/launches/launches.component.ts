@@ -6,6 +6,7 @@ import { ILaunchesFilterService } from 'src/app/services/launches-filter-service
 import { ModalService, ModalSize } from 'src/app/services/modal-service';
 import { SpaceXService } from 'src/app/services/spaceX.service';
 
+/// Component to display launch list in a paginated table.
 @Component({
   selector: 'app-launches',
   templateUrl: './launches.component.html',
@@ -19,7 +20,9 @@ export class LaunchesComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 10;
 
-  constructor(private spaceXService: SpaceXService, private modalService: ModalService, private filterService: ILaunchesFilterService) {
+  constructor(private spaceXService: SpaceXService,
+    private modalService: ModalService,
+    private filterService: ILaunchesFilterService) {
   }
 
   ngOnInit() {
@@ -36,6 +39,7 @@ export class LaunchesComponent implements OnInit {
 
   }
 
+  // Using a filter service to perform any required filtering and sorting.
   public applyFilters(filterValues: ILaunchFilter): void {
     const filtered: ILaunch[] = this.filterService.filterLaunches(this.allLaunches, filterValues);
     this.filteredLaunches = this.sort(filtered);

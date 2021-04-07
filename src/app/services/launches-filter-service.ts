@@ -5,6 +5,8 @@ import { ILaunch } from "../models/launch.model";
 /// Helpers for sorting and filtering ILaunch array data.
 @Injectable({providedIn: "root"})
 export class ILaunchesFilterService {
+
+    // Used internally as a list of all launches to filter.
     private launches: ILaunch[];
 
     public sortByDate(list: ILaunch[], order: SortOrder = SortOrder.desc): ILaunch[] {
@@ -16,12 +18,15 @@ export class ILaunchesFilterService {
         }
     }
 
-    public filterLaunches(launches: ILaunch[], filterForm: ILaunchFilter): ILaunch[] {
+    public filterLaunches(launches: ILaunch[], filterVals: ILaunchFilter): ILaunch[] {
         this.launches = launches;
-        Object.keys(LaunchFilterFormNames).forEach((x: LaunchFilterFormNames) => this.filter(x, filterForm))
+
+        // Looping through all properties in the launch filter and performing any required filtering defined.
+        Object.keys(LaunchFilterFormNames).forEach((x: LaunchFilterFormNames) => this.filter(x, filterVals))
         return this.launches;
     }
 
+    // Defining property specific filtering.
     private filter(key: LaunchFilterFormNames, filterVals: ILaunchFilter): void {
         switch (key) {
             case LaunchFilterFormNames.launchpads:

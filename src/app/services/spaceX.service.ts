@@ -5,6 +5,7 @@ import { ILaunch, ILaunchPad } from "../models/launch.model";
 import { catchError } from "rxjs/operators";
 import { BaseHttpService } from "./base-http-service";
 
+/// Service used to get spaceX related data.
 @Injectable({providedIn: "root"})
 export class SpaceXService extends BaseHttpService {
 

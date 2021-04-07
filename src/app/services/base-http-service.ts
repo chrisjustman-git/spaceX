@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { throwError } from "rxjs";
 
+/// Abstract class which holds some shared functionality to use for http requests.
 export abstract class BaseHttpService {
 
     protected handleError(error: HttpErrorResponse) {
